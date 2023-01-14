@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+
+{%block title%}
+blogNews - create post
+{%endblock%}
+
+{%block content%}
+<h3>Add post</h3>
+<br />
+<div class="form-control-sm">
+    <form method="post">
+        {% csrf_token %}
+            {{form.as_p}}
+        <button class="btn btn-secondary my-2 my-sm-0">Add post</button>
+    </form>
+</div>
+{%endblock%}

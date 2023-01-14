@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+
+{%block title%}
+{{post.title_tag}}
+{%endblock%}
+
+{%block content%}
+
+<h3>{{post.title}}</h3>
+<small>By: {{post.author.first_name}} {{post.author.last_name}}</small>
+<br/>
+<hr>
+<br/>
+{{post.body}}
+<br/>
+<a type="button" class="btn btn-secondary my-2 my-sm-0" href="{% url 'main' %}">Back</a>
+
+{%endblock%}
