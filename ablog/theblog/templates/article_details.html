@@ -7,7 +7,7 @@
 {%block content%}
 
 <h3>{{post.title}}</h3>
-<small>By: {{post.author.first_name}} {{post.author.last_name}}</small>
+<small>By: {{post.author.first_name}} {{post.author.last_name}} - <a href="{% url 'edit-post' post.pk %}">edit</a></small>
 <br/>
 <hr>
 <br/>

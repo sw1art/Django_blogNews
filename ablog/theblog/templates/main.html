@@ -2,15 +2,18 @@
 
 {%block content%}
 
-<h2>Home</h2>
+<h2>Posts</h2>
 <br/>
 <ul>
     {% for post in object_list %}
     <li><a href="{% url 'article-detail' post.pk %}">{{post.title}}</a>
-     - {{post.author.first_name}}
-    {{post.author.last_name}}<br/>
+     - {{post.author.first_name}} {{post.author.last_name}} - 
+     <small>
+        <a href="{% url 'edit-post' post.pk %}">
+            edit</a></small>
+     <br/>
     {{post.body}}</li>
     {% endfor%}
 </ul>
-
+  
 {%endblock%}
