@@ -15,3 +15,5 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('main')
         # kwargs={'pk' : self.pk} args=(str(self.id))
+
+    

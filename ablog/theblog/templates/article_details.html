@@ -7,7 +7,11 @@
 {%block content%}
 
 <h3>{{post.title}}</h3>
-<small>By: {{post.author.first_name}} {{post.author.last_name}} - <a href="{% url 'edit-post' post.pk %}">edit</a></small>
+<small>By: {{post.author.first_name}} {{post.author.last_name}}
+    <a class="text-muted list-inline-item" href="{% url 'edit-post' post.pk %}">edit</a>
+    <text class="text-muted list-inline-item">/</text>
+    <a class="text-muted list-inline-item" href="{% url 'delete-post' post.pk %}">delete</a>
+</small>
 <br/>
 <hr>
 <br/>
