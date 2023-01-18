@@ -5,18 +5,19 @@ blogNews - delete post
 {%endblock%}
 
 {%block content%}
+{% if user.is_authenticated %}
+    <h3>Delete post</h3>
+    <br />
+    <h5>Delete: {{post.title}}</h5>
 
-<h3>Delete post</h3>
-<br />
-<h5>Delete: {{post.title}}</h5>
-
-<div class="form-control-sm">
-    <form method="POST">
-        {% csrf_token %}
-        <br />
-        <p class='text-muted'><strong>Are you sure?</strong></p>
-        <button class="btn btn-secondary my-2 my-sm-0">Delete</button>
-    </form>
-</div>
+    <div class="form-control-sm">
+        <form method="POST">
+            {% csrf_token %}
+            <br />
+            <p class='text-muted'><strong>Are you sure?</strong></p>
+            <button class="btn btn-secondary my-2 my-sm-0">Delete</button>
+        </form>
+    </div>
+{%endif%}
 
 {%endblock%}
