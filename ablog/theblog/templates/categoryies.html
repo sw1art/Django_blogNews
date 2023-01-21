@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+
+{%block content%}
+
+<h2>{{cats}}</h2>
+<br/>
+{%if category_posts%}
+<ul>
+        {% for post in category_posts %}
+        <li><a href="{% url 'article-detail' post.pk %}">{{post.title}}</a>
+        - {{post.author.first_name}} {{post.author.last_name}}
+        <small>
+        
+        <text>Category: </text>
+        <a>{{post.category}}</a>
+            
+            {% if user.is_authenticated %}
+                <a class="text-muted list-inline-item mr-0" href="{% url 'edit-post' post.pk %}">edit</a>
+                <text class="text-muted list-inline-item mr-0">/</text>
+                <a class="text-muted list-inline-item mr-0" href="{% url 'delete-post' post.pk %}">delete</a>
+            {%endif%}
+                <text class="ml-2">{{post.date_post}}</text>
+        </small>
+        <br/>
+        {{post.body|slice:":1000"|safe}}</li>
+        {% endfor%}
+</ul>
+<br/>
+<a type="button" class="btn btn-secondary my-2 my-sm-0" href="{% url 'main' %}">Back</a>
+{%else%}
+<h2>Such a category does not exist...</h2>
+<br/>
+<a type="button" class="btn btn-secondary my-2 my-sm-0" href="{% url 'main' %}">Back</a>
+{%endif%}
+  
+{%endblock%}

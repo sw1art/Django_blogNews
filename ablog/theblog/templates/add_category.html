@@ -1,0 +1,20 @@
+{%extends 'base.html'%}
+
+{%block title%}
+blogNews - create category
+{%endblock%}
+
+{%block content%}
+<h3>Add category</h3>
+<br />
+<div class="form-control-sm">
+    <form method="POST">
+        {% csrf_token %}
+            {{form.as_p}}
+        <button class="btn btn-secondary my-2 my-sm-0">Add category</button>
+    </form>
+    <br/>
+    <a type='button' class="btn btn-secondary my-2 my-sm-0 j" href="{% url 'main' %}">Back</a>
+</div>
+<br/>
+{%endblock%}

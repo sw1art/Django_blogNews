@@ -4,7 +4,7 @@ from .models import Post
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'title_tag', 'author','body')
+        fields = ('title', 'title_tag', 'category', 'author','body')
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -12,18 +12,24 @@ class PostForm(forms.ModelForm):
             }),
             'title_tag': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Input tag-link'}),
+                'placeholder': 'Input tag-link'
+            }),
+            'category': forms.Select(attrs={
+                'class': 'form-control',
+            }),
             'author': forms.Select(attrs={
-                'class': 'form-control',}),
+                'class': 'form-control',
+            }),
             'body': forms.Textarea(attrs={
                 'class': 'form-control',
-                'placeholder': "Input a message post"}),
+                'placeholder': "Input a message post"
+            }),
         }
 
 class EditForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'title_tag','body')
+        fields = ('title', 'title_tag', 'category', 'body')
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -32,6 +38,9 @@ class EditForm(forms.ModelForm):
             'title_tag': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Input tag-link'}),
+            'category': forms.Select(attrs={
+                'class': 'form-control',
+            }),
             # 'author': forms.Select(attrs={
             #     'class': 'form-control',}),
             'body': forms.Textarea(attrs={

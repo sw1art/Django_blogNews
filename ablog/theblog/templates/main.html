@@ -9,6 +9,10 @@
     <li><a href="{% url 'article-detail' post.pk %}">{{post.title}}</a>
      - {{post.author.first_name}} {{post.author.last_name}}
      <small>
+    
+    <text>Category: </text>
+    <a href="{% url 'category' post.category  %}">{{post.category}}</a>
+        
         {% if user.is_authenticated %}
             <a class="text-muted list-inline-item mr-0" href="{% url 'edit-post' post.pk %}">edit</a>
             <text class="text-muted list-inline-item mr-0">/</text>
@@ -17,7 +21,7 @@
             <text class="ml-2">{{post.date_post}}</text>
     </small>
      <br/>
-    {{post.body|slice:":1000"}}</li>
+    {{post.body|slice:":1000"|safe}}</li>
     {% endfor%}
 </ul>
   
