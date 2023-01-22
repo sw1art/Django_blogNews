@@ -6,6 +6,7 @@ blogNews - edit post
 
 {%block content%}
 {% if user.is_authenticated %}
+    {%if user.id == post.author.id%}
     <h3>Edit post</h3>
     <br />
     <div class="form-control-sm">
@@ -15,5 +16,8 @@ blogNews - edit post
             <button class="btn btn-secondary my-2 my-sm-0">Update</button>
         </form>
     </div>
+    {%else%}
+        <h3>You can't edit other people's posts<h3>
+    {%endif%}
 {%endif%}
 {%endblock%}

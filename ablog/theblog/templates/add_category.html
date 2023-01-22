@@ -5,6 +5,7 @@ blogNews - create category
 {%endblock%}
 
 {%block content%}
+{% if user.is_authenticated %}
 <h3>Add category</h3>
 <br />
 <div class="form-control-sm">
@@ -17,4 +18,7 @@ blogNews - create category
     <a type='button' class="btn btn-secondary my-2 my-sm-0 j" href="{% url 'main' %}">Back</a>
 </div>
 <br/>
+{%else%}
+    <h3>You must be logged in to add a category.<h3>
+{%endif%}
 {%endblock%}

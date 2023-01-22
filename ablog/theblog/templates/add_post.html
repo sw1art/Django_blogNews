@@ -5,6 +5,7 @@ blogNews - create post
 {%endblock%}
 
 {%block content%}
+{% if user.is_authenticated %}
 <h3>Add post</h3>
 <br />
 <div class="form-control-sm">
@@ -14,4 +15,12 @@ blogNews - create post
         <button class="btn btn-secondary my-2 my-sm-0">Add post</button>
     </form>
 </div>
+
+<script>
+    let authorId = '{{user.id}}'
+    document.getElementById('authorId').value = authorId
+</script>
+{%else%}
+<h3>You must be logged in to add a post.<h3>
+{%endif%}
 {%endblock%}

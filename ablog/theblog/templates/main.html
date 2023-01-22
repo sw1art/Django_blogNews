@@ -8,20 +8,22 @@
     {% for post in object_list %}
     <li><a href="{% url 'article-detail' post.pk %}">{{post.title}}</a>
      - {{post.author.first_name}} {{post.author.last_name}}
-     <small>
-    
+
+    <small> 
     <text>Category: </text>
     <a href="{% url 'category' post.category %}">{{post.category}}</a>
         
         {% if user.is_authenticated %}
+            {%if user.id == post.author.id%}
             <a class="text-muted list-inline-item mr-0" href="{% url 'edit-post' post.pk %}">edit</a>
             <text class="text-muted list-inline-item mr-0">/</text>
             <a class="text-muted list-inline-item mr-0" href="{% url 'delete-post' post.pk %}">delete</a>
+            {%endif%}
         {%endif%}
             <text class="ml-2">{{post.date_post}}</text>
     </small>
      <br/>
-    {{post.body|slice:":1000"|safe}}</li>
+    <li>{{post.body|slice:":1000"|safe}}</li>
     {% endfor%}
 </ul>
 

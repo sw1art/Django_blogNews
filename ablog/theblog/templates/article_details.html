@@ -9,9 +9,11 @@
 <h3>{{post.title}}</h3>
 <small>By: {{post.author.first_name}} {{post.author.last_name}}
     {% if user.is_authenticated %}
+        {%if user.id == post.author.id%}
         <a class="text-muted list-inline-item mr-0" href="{% url 'edit-post' post.pk %}">edit</a>
         <text class="text-muted list-inline-item mr-0">/</text>
         <a class="text-muted list-inline-item mr-0" href="{% url 'delete-post' post.pk %}">delete</a>
+        {%endif%}
     {%endif%}
         <text class="ml-2">{{post.date_post}}</text>
 </small>
@@ -20,6 +22,5 @@
 <br/>
 {{post.body}}
 <br/>
-<a type="button" class="btn btn-secondary my-2 my-sm-0" href="{% url 'main' %}">Back</a>
 
 {%endblock%}

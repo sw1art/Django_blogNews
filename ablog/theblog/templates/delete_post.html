@@ -6,6 +6,7 @@ blogNews - delete post
 
 {%block content%}
 {% if user.is_authenticated %}
+    {%if user.id == post.author.id%}
     <h3>Delete post</h3>
     <br />
     <h5>Delete: {{post.title}}</h5>
@@ -18,6 +19,8 @@ blogNews - delete post
             <button class="btn btn-secondary my-2 my-sm-0">Delete</button>
         </form>
     </div>
+    {%else%}
+        <h3>You can't delete other people's posts.<h3>
+    {%endif%}
 {%endif%}
-
 {%endblock%}
