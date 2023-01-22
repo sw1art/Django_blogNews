@@ -22,7 +22,28 @@
       
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+
+            <!-- CATEGORIES MENU -->
+            {%if category_menu%}
+            <li class="nav-item dropdown active">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                Categories
+              </a>
+              <div class="dropdown-menu">
+                {% for item in category_menu %}
+                  <a class="dropdown-item" href="{% url 'category' item %}">{{item}}</a>
+                {%endfor%}
+              </div>
+            </li>
+            {%else%}
+              <li class="nav-item active">
+                <a class="nav-link" href="{% url 'category-list' %}">Categories</a>
+              </li>
+            {%endif%}
+
             {% if user.is_authenticated %}
+
+
               <li class="nav-item active">
                 <a class="nav-link" href="{% url 'add-post' %}">Add post</a>
               </li>

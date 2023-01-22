@@ -7,11 +7,23 @@ from .forms import PostForm, EditForm
 class MainView(ListView):
     model = Post
     template_name = 'main.html'
-    ordering = ['-id']
+    ordering = ['-date_post']
+
+    def get_context_data(self, *args, **kwargs):
+        category_menu = Category.objects.all()
+        context = super(MainView, self).get_context_data(*args, **kwargs)
+        context["category_menu"] = category_menu
+        return context
 
 class ArticleDetailView(DetailView):
     model = Post
     template_name = 'article_details.html'
+
+    def get_context_data(self, *args, **kwargs):
+        category_menu = Category.objects.all()
+        context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
+        context["category_menu"] = category_menu
+        return context
 
 class AddPostView(CreateView):
     model = Post 
@@ -19,12 +31,16 @@ class AddPostView(CreateView):
     template_name = 'add_post.html'
     # fields = '__all__'
 
+def CategoryListView(request):
+    cat_menu_list = Category.objects.all()
+    return render(request, 'category_list.html', {'cat_menu_list':cat_menu_list})
+
 def CategoryView(request, cats):
     try:
         category_name = Category.objects.filter(name=cats)
         category_posts = Post.objects.filter(category=category_name[0])
         return render(request, 'categoryies.html', {
-            'cats': cats.title(),
+            'cats': cats,
             'category_posts': category_posts
         })
     except:
